@@ -23,8 +23,8 @@ include('includes/db.php');
         
         }else
         {
-            if($password != ""){$sql = "UPDATE usuarios set nombre='$nombre', apellido='$apellido',correo='$email',password='$password',estado='$estado' WHERE id='$id'";
-            }else{$sql = "UPDATE usuarios set nombre='$nombre', apellido='$apellido',correo='$email',estado='$estado' WHERE id='$id'";}
+            if($password != ""){$sql = "UPDATE usuarios set nombre='$nombre', apellido='$apellido',email='$email',password='$password',estado='$estado' WHERE id='$id'";
+            }else{$sql = "UPDATE usuarios set nombre='$nombre', apellido='$apellido',email='$email',estado='$estado' WHERE id='$id'";}
         }
     }
     DB::query($sql);
