@@ -3,10 +3,10 @@
 class DB {
 
     //Datos de conexión
-    static $host = "YOUR_HOST";
-    static $user = "YOUR_USER";
-    static $password = "YOUR_PASSWORD";
-    static $db = "YOUR_DATABASE";
+    static $host = "localhost";
+    static $user = "root";
+    static $password = "";
+    static $db = "usuarios";
 
     public static function query($sql){
         //Crear la conexión

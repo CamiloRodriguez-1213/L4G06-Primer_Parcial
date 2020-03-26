@@ -1,64 +1,64 @@
+<?php
+     include('includes/db.php');
+     $sql="SELECT * FROM usuarios ";
+     
+     $result= DB::query($sql);
+ 
+
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listado de Usuarios</title>
-
-    <link rel="stylesheet" href="style.css">
+    <title>Index</title>
+    <link rel="stylesheet" type="text/css" href="estilo.css">
 </head>
-<body>
-<div class="container">
-    <div>
-        <h1>
-            Listado de Usuarios
-            <a href="">Nuevo</a>
-        </h1>
+<body align= center>
+   <h1> Base de datos </h1>
 
-    </div>
-
-    <div>
-        <table class="table">
+    <table colspan="2" width="100%" height="100%" border = 1>
+         <tr>
             <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nombres</th>
-                <th>Apellidos</th>
-                <th>Email</th>
-                <th>Estado</th>
-                <th>Acciones</th>
-            </tr>
-            </thead>
+              <th>id</th>
+              <th>Nombre</th>
+              <th>Apellido</th>
+              <th>Correo</th>
+              <th>Estado</th>
+              <th colspan="2">Acciones</th>
+           </thead>      
+        </tr>
 
-            <tbody class="center">
-            <!--Datos de Ejemplo : Borrar esta información-->
-            <tr>
-                <td>1</td>
-                <td>Jeyson</td>
-                <td>Calvache</td>
-                <td>jeison130@gmail.com</td>
-                <td class="activo">Activo</td>
-                <td>
-                    <a href="">Inactivar</a>
-                    <a href="">Editar</a>
-                </td>
-            </tr>
+    <?php
+        while($mostrar= mysqli_fetch_array($result)){
+          ?>
 
-            <tr>
-                <td>2</td>
-                <td>Juan</td>
-                <td>Perez</td>
-                <td>juanperez@gmail.com</td>
-                <td class="inactivo">Inactivo</td>
+        <tr>
+         <td><?php echo $mostrar['id'] ?></td>
+         <td><?php echo $mostrar['nombre'] ?></td>
+         <td><?php echo $mostrar['apellido'] ?></td>
+         <td><?php echo $mostrar['email'] ?></td>
+      
+         <td class="<?= $mostrar['estado'] ?>"><?= $mostrar['estado'] ?></td>
+                <input type="hidden" name="estado" value="<?= $mostrar['estado']?>">
                 <td>
-                    <a href="">Activar</a>
-                    <a href="">Editar</a>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
+                <?php  if($mostrar['estado'] == "activo"){  ?>
+                        <a href="guardar.php?estado=<?= $mostrar['estado']?>&id=<?= $mostrar['id']?>">Inactivar</a>
+                    <?php  }else{  ?>
+                        <a href="guardar.php?estado=<?= $mostrar['estado']?>&id=<?= $mostrar['id']?>">Activar</a>
+                    <?php  }  ?>
+                    <a href="editar.php?id=<?= $mostrar['id']?>">Editar</a>
+                    </td>
+        </tr>
+
+            <?php
+        }
+
+     ?>
+  
+      </table>
+
+      <input type="submit" onclick="location='crear.php'" value="Inicio">
 
 </body>
 </html>
